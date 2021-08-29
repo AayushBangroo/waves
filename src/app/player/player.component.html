@@ -1,0 +1,31 @@
+<div class="player">
+  <div class="time-control">
+    <p>{{ getTime(currentTime) }}</p>
+    <input
+      type="range"
+      min="0"
+      [max]="duration"
+      [value]="currentTime"
+      (input)="onDragHandler($event)"
+    />
+    <p>{{ getTime(duration) }}</p>
+  </div>
+
+  <div class="play-control">
+    <fa-icon [icon]="faAngleLeft" size="2x" class="skip-back"></fa-icon>
+    <fa-icon
+      [icon]="currentSong.active ? faPause : faPlay"
+      size="2x"
+      class="play"
+      (click)="playSongHandler()"
+    ></fa-icon>
+    <fa-icon [icon]="faAngleRight" size="2x" class="skip-right"></fa-icon>
+  </div>
+
+  <audio
+    #audioRef
+    [src]="currentSong.audio"
+    (timeupdate)="timeUpdateHandler($event)"
+    (loadedmetadata)="timeUpdateHandler($event)"
+  ></audio>
+</div>
