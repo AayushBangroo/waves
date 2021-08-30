@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Song, SongsService } from '../song/song.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { Song, SongsService } from '../song/song.service';
   styleUrls: ['./library.component.scss'],
 })
 export class LibraryComponent implements OnInit {
+  @Input() showLibrary: boolean = false;
   songsList!: Song[];
 
   constructor(private songsService: SongsService) {}

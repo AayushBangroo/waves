@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { PlayerService } from '../player/player.service';
 
 export interface Song {
   name: string;
@@ -16,7 +17,7 @@ export interface Song {
   providedIn: 'root',
 })
 export class SongsService {
-  songs: Song[] = [
+  private songs: Song[] = [
     {
       name: 'Hotel Lobby Birthday Party',
       artist: 'Aviino, Oliv',
@@ -25,7 +26,7 @@ export class SongsService {
       background: ['#8574B8', '#0E436C'],
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=10452',
       id: uuidv4(),
-      active: false,
+      active: true,
     },
     {
       name: 'Not A Cloud In Sight',
@@ -107,29 +108,29 @@ export class SongsService {
     return this.songs.slice();
   }
 
+  getSongsArrayLength() {
+    return this.songs.length;
+  }
+
   getCurrentSong() {
     return this.currentSong;
+  }
+
+  getSongIndex(song: Song) {
+    return this.songs.findIndex((s) => s.id === song.id);
   }
 
   setCurrentSong(song: Song) {
     this.currentSong.next(song);
   }
 
-  setCurrentSongInactive(currentSong: Song) {
-    this.songs = this.songs.map((song) => {
-      if (song.id === currentSong.id) song.active = false;
-      return song;
+  setSongActive(song: Song) {
+    this.songs.forEach((s) => {
+      if (s.id === song.id) {
+        s.active = true;
+      } else {
+        s.active = false;
+      }
     });
-  }
-
-  setSongActive(currentSong: Song) {
-    this.songs = this.songs.map((song) => {
-      if (song.id === currentSong.id) song.active = true;
-      return song;
-    });
-  }
-
-  isPlaying(song: Song) {
-    return song.active;
   }
 }

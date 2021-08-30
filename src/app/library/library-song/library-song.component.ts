@@ -15,5 +15,7 @@ export class LibrarySongComponent implements OnInit {
 
   onClickLibrarySong() {
     this.songsService.currentSong.next(this.song);
+    //make clicked song active rest inactive
+    this.songsService.setSongActive(this.song);
   }
 }

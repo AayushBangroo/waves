@@ -31,6 +31,7 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   currentSong!: Song;
   currentTime: Number = 0;
   duration: Number = 0;
+  animationPercentage: Number = 0;
   //Audio element
   @ViewChild('audioRef') audioElement!: ElementRef;
   //Subscription
@@ -38,23 +39,22 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private songsService: SongsService,
-    private playerService: PlayerService
+    public playerService: PlayerService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.subscription = this.songsService.currentSong.subscribe((song) => {
       //set previously running song inactive if it was active
       if (this.currentSong) {
-        if (this.currentSong.active) {
-          this.songsService.setCurrentSongInactive(this.currentSong);
+        if (this.playerService.isPlaying) {
           this.currentSong = song;
-          this.songsService.setSongActive(this.currentSong);
           //play newly selected song if previous song was also playing
           this.playerService.playSong(this.currentSong);
         }
       }
       //select the new song but don't play it
       this.currentSong = song;
+      this.songsService.setSongActive(this.currentSong);
     });
   }
 
@@ -68,18 +68,41 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   playSongHandler() {
-    if (this.currentSong.active) {
+    if (this.playerService.isPlaying) {
       this.playerService.pauseSong();
-      this.songsService.setCurrentSongInactive(this.currentSong);
     } else {
       this.playerService.playSong(this.currentSong);
-      this.songsService.setSongActive(this.currentSong);
     }
+  }
+
+  playLeftSong() {
+    const currentIndex = this.songsService.getSongIndex(this.currentSong);
+    const N = this.songsService.getSongsArrayLength();
+
+    this.songsService.currentSong.next(
+      this.songsService.getSongs()[(currentIndex - 1 + N) % N]
+    );
+  }
+
+  playRightSong() {
+    const currentIndex = this.songsService.getSongIndex(this.currentSong);
+    const N = this.songsService.getSongsArrayLength();
+
+    this.songsService.currentSong.next(
+      this.songsService.getSongs()[(currentIndex + 1) % N]
+    );
   }
 
   timeUpdateHandler(e: any) {
     this.currentTime = e.target.currentTime;
     this.duration = e.target.duration;
+
+    const currentTimeRounded = Math.round(this.currentTime.valueOf());
+    const durationRounded = Math.round(this.duration.valueOf());
+    const animationPercentage = Math.round(
+      (currentTimeRounded / durationRounded) * 100
+    );
+    this.animationPercentage = animationPercentage;
   }
 
   getTime(time: any) {
@@ -91,5 +114,9 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   onDragHandler(e: any) {
     this.audioElement.nativeElement.currentTime = e.target.value;
     this.currentTime = e.target.value;
+  }
+
+  onSongEnded() {
+    this.playRightSong();
   }
 }

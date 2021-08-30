@@ -7,6 +7,7 @@ import { PlayerComponent } from './player/player.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LibraryComponent } from './library/library.component';
 import { LibrarySongComponent } from './library/library-song/library-song.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { LibrarySongComponent } from './library/library-song/library-song.compon
     PlayerComponent,
     LibraryComponent,
     LibrarySongComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule],
   providers: [],

@@ -1,25 +1,52 @@
 <div class="player">
   <div class="time-control">
     <p>{{ getTime(currentTime) }}</p>
-    <input
-      type="range"
-      min="0"
-      [max]="duration"
-      [value]="currentTime"
-      (input)="onDragHandler($event)"
-    />
-    <p>{{ getTime(duration) }}</p>
+    <div
+      class="track"
+      [ngStyle]="{
+        background:
+          'linear-gradient(to right,' +
+          currentSong.background[0] +
+          ',' +
+          currentSong.background[1] +
+          ')'
+      }"
+    >
+      <input
+        type="range"
+        min="0"
+        [max]="duration || 0"
+        [value]="currentTime"
+        (input)="onDragHandler($event)"
+      />
+      <div
+        class="animate-track"
+        [ngStyle]="{ transform: 'translateX(' + animationPercentage + '%)' }"
+      ></div>
+    </div>
+
+    <p>{{ duration ? getTime(duration) : "0:00" }}</p>
   </div>
 
   <div class="play-control">
-    <fa-icon [icon]="faAngleLeft" size="2x" class="skip-back"></fa-icon>
     <fa-icon
-      [icon]="currentSong.active ? faPause : faPlay"
+      [icon]="faAngleLeft"
+      size="2x"
+      class="skip-back"
+      (click)="playLeftSong()"
+    ></fa-icon>
+    <fa-icon
+      [icon]="playerService.isPlaying ? faPause : faPlay"
       size="2x"
       class="play"
       (click)="playSongHandler()"
     ></fa-icon>
-    <fa-icon [icon]="faAngleRight" size="2x" class="skip-right"></fa-icon>
+    <fa-icon
+      [icon]="faAngleRight"
+      size="2x"
+      class="skip-right"
+      (click)="playRightSong()"
+    ></fa-icon>
   </div>
 
   <audio
@@ -27,5 +54,6 @@
     [src]="currentSong.audio"
     (timeupdate)="timeUpdateHandler($event)"
     (loadedmetadata)="timeUpdateHandler($event)"
+    (ended)="onSongEnded()"
   ></audio>
 </div>

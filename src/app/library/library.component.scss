@@ -6,10 +6,18 @@
   height: 100%;
   box-shadow: 2px 2px 50px rgb(200, 200, 200);
   overflow: scroll;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
+  opacity: 0;
 
   h2 {
     padding: 2rem;
   }
+}
+
+.library-active {
+  transform: translateX(0%);
+  opacity: 1;
 }
 
 //scrollbar

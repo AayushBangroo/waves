@@ -1,5 +1,6 @@
 <div class="app">
+  <app-navbar (libraryEvent)="toggleLibrary($event)"></app-navbar>
   <app-song></app-song>
   <app-player></app-player>
-  <app-library></app-library>
+  <app-library [showLibrary]="showLibrary"></app-library>
 </div>

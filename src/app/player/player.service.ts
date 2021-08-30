@@ -6,10 +6,9 @@ import { Song, SongsService } from '../song/song.service';
 })
 export class PlayerService {
   audioElement!: ElementRef;
-  currentSong!: Song;
   isPlaying: boolean = false;
 
-  constructor(private songsService: SongsService) {}
+  constructor() {}
 
   setAudioElement(audioElement: ElementRef) {
     this.audioElement = audioElement;
@@ -18,11 +17,9 @@ export class PlayerService {
   playSong(song: Song) {
     if (this.audioElement) {
       const audioPromise = this.audioElement.nativeElement.play();
-
       if (audioPromise) {
         audioPromise.then(() => this.audioElement.nativeElement.play());
       }
-
       this.isPlaying = true;
     }
   }
