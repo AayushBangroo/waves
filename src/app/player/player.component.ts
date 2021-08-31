@@ -51,9 +51,10 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
           //play newly selected song if previous song was also playing
           this.playerService.playSong(this.currentSong);
         }
+      } else {
+        //select the new song but don't play it
+        this.currentSong = song;
       }
-      //select the new song but don't play it
-      this.currentSong = song;
       this.songsService.setSongActive(this.currentSong);
     });
   }
@@ -103,6 +104,9 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
       (currentTimeRounded / durationRounded) * 100
     );
     this.animationPercentage = animationPercentage;
+
+    if (this.duration.valueOf() - this.currentTime.valueOf() <= 0.5)
+      this.onSongEnded();
   }
 
   getTime(time: any) {
@@ -117,6 +121,9 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onSongEnded() {
-    this.playRightSong();
+    const currentIndex = this.songsService.getSongIndex(this.currentSong);
+    const N = this.songsService.getSongsArrayLength();
+    const nextSong = this.songsService.getSongs()[(currentIndex + 1) % N];
+    this.songsService.currentSong.next(nextSong);
   }
 }
