@@ -8,7 +8,7 @@ export class PlayerService {
   audioElement!: ElementRef;
   isPlaying: boolean = false;
 
-  constructor() {}
+  constructor(private songsService: SongsService) {}
 
   setAudioElement(audioElement: ElementRef) {
     this.audioElement = audioElement;
@@ -22,7 +22,7 @@ export class PlayerService {
       if (audioPromise !== undefined) {
         audioPromise
           .then(() => this.audioElement.nativeElement.play())
-          .catch(() => console.log('promise error'));
+          .catch((err: Error) => console.log(err));
       }
       this.isPlaying = true;
     }
