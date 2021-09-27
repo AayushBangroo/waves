@@ -17,12 +17,13 @@ export class PlayerService {
   playSong(song: Song) {
     if (this.audioElement) {
       const audioPromise = this.audioElement.nativeElement.play();
-      console.log(audioPromise);
 
       if (audioPromise !== undefined) {
         audioPromise
           .then(() => this.audioElement.nativeElement.play())
-          .catch((err: Error) => console.log(err));
+          .catch((err: Error) => {
+            this.audioElement.nativeElement.play();
+          });
       }
       this.isPlaying = true;
     }

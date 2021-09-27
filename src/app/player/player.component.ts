@@ -104,11 +104,6 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
       (currentTimeRounded / durationRounded) * 100
     );
     this.animationPercentage = animationPercentage;
-
-    // if (this.duration.valueOf() - this.currentTime.valueOf() <= 0.5)
-    //   this.onSongEnded();
-    if (this.duration.valueOf() === this.currentTime.valueOf())
-      this.onSongEnded();
   }
 
   getTime(time: any) {
