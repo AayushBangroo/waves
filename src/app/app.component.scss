@@ -1,6 +1,14 @@
+.app {
+  transition: all 0.5s ease;
+}
+
 .library-active {
   transform: translateX(0%);
 }
 .library-inactive {
   transform: translateX(-100%);
+}
+
+.animate {
+  margin-left: 15%;
 }

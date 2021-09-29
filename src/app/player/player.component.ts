@@ -50,9 +50,12 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
           this.currentSong = song;
           //play newly selected song if previous song was also playing
           this.playerService.playSong(this.currentSong);
+        } else {
+          //select the new song but don't play it
+          this.currentSong = song;
         }
       } else {
-        //select the new song but don't play it
+        //set initial song when page loads
         this.currentSong = song;
       }
       this.songsService.setSongActive(this.currentSong);
