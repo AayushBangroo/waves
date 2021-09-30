@@ -16,8 +16,19 @@ export interface Song {
 @Injectable({
   providedIn: 'root',
 })
+//https://www.mboxdrive.com/Seven%20Lions%20&%20Echos%20-%20Cold%20Skin%20(Koven%20Remix)%20[Monstercat%20EP%20Release].mp3
 export class SongsService {
   private songs: Song[] = [
+    {
+      name: 'Cold Skin',
+      artist: 'Seven Lions & Echos, Koven',
+      cover: 'https://i1.sndcdn.com/artworks-000228175450-od72g8-t500x500.jpg',
+      background: ['#6e6988', '#2e3447'],
+      audio:
+        'https://www.mboxdrive.com/Seven%20Lions%20&%20Echos%20-%20Cold%20Skin%20(Koven%20Remix)%20[Monstercat%20EP%20Release].mp3',
+      id: uuidv4(),
+      active: true,
+    },
     {
       name: 'Hotel Lobby Birthday Party',
       artist: 'Aviino, Oliv',
@@ -26,7 +37,7 @@ export class SongsService {
       background: ['#8574B8', '#0E436C'],
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=10452',
       id: uuidv4(),
-      active: true,
+      active: false,
     },
     {
       name: 'Not A Cloud In Sight',
