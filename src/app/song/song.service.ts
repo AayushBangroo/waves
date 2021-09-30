@@ -16,7 +16,6 @@ export interface Song {
 @Injectable({
   providedIn: 'root',
 })
-//https://www.mboxdrive.com/Seven%20Lions%20&%20Echos%20-%20Cold%20Skin%20(Koven%20Remix)%20[Monstercat%20EP%20Release].mp3
 export class SongsService {
   private songs: Song[] = [
     {
@@ -28,6 +27,28 @@ export class SongsService {
         'https://www.mboxdrive.com/Seven%20Lions%20&%20Echos%20-%20Cold%20Skin%20(Koven%20Remix)%20[Monstercat%20EP%20Release].mp3',
       id: uuidv4(),
       active: true,
+    },
+    {
+      name: 'Fortress',
+      artist: 'Rogue, Monster Cat Release',
+      cover:
+        'https://images.genius.com/3a1294ae444639117f94449181fe28da.1000x1000x1.jpg',
+      background: ['#e8e8e6', '#b8d8d5'],
+      audio:
+        'https://www.mboxdrive.com/Rogue%20-%20Fortress%20[Monstercat%20Release].mp3',
+      id: uuidv4(),
+      active: false,
+    },
+    {
+      name: 'Oceans',
+      artist: 'Rogue, Monster Cat Release',
+      cover:
+        'https://images.genius.com/a6f7e9465fc10386e7112812c349c518.1000x1000x1.jpg',
+      background: ['#b6b4b5', '#485963'],
+      audio:
+        'https://www.mboxdrive.com/Rogue%20%20-%20Oceans%20[Monstercat%20Release].mp3',
+      id: uuidv4(),
+      active: false,
     },
     {
       name: 'Hotel Lobby Birthday Party',
