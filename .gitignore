@@ -46,4 +46,7 @@ Thumbs.db
 
 #Deployment
 .github
-firebase*.*
+.firebase
+.github/workflows
+.firebaserc
+firebase.json
