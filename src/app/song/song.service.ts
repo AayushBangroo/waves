@@ -51,6 +51,17 @@ export class SongsService {
       active: false,
     },
     {
+      name: 'Resonate',
+      artist: 'Slippy, Danyka Nadeau',
+      cover:
+        'https://i1.sndcdn.com/artworks-MbLylrXMJNwYBl3p-oL729A-t500x500.jpg',
+      background: ['#602a5d', '#1d1b2b'],
+      audio:
+        'https://www.mboxdrive.com/Slippy%20&%20Danyka%20Nadeau%20-%20Resonate%20[Monstercat%20Release].mp3',
+      id: uuidv4(),
+      active: false,
+    },
+    {
       name: 'Hotel Lobby Birthday Party',
       artist: 'Aviino, Oliv',
       cover:
