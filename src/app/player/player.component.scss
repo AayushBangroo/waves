@@ -28,14 +28,37 @@
   }
 }
 
-.play-control {
-  width: 30%;
+.player-actions {
+  width: 47%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
-  fa-icon {
+  .play-control {
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    fa-icon {
+      cursor: pointer;
+    }
+  }
+
+  .toggle {
     cursor: pointer;
+  }
+}
+
+.captions {
+  margin-top: -10px;
+  width: 47.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    font-size: 13px;
   }
 }
 
@@ -65,7 +88,19 @@
     width: 90%;
   }
 
-  .play-control {
-    width: 70%;
+  .player-actions {
+    width: 80%;
+    .play-control {
+      width: 60%;
+    }
+  }
+
+  .captions {
+    width: 80%;
+    margin-top: 0;
+
+    p {
+      font-size: 11px;
+    }
   }
 }
