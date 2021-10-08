@@ -28,25 +28,61 @@
     <p>{{ duration ? getTime(duration) : "0:00" }}</p>
   </div>
 
-  <div class="play-control">
-    <fa-icon
-      [icon]="faAngleLeft"
-      size="2x"
-      class="skip-back"
-      (click)="playLeftSong()"
-    ></fa-icon>
-    <fa-icon
-      [icon]="playerService.isPlaying ? faPause : faPlay"
-      size="2x"
-      class="play"
-      (click)="playSongHandler()"
-    ></fa-icon>
-    <fa-icon
-      [icon]="faAngleRight"
-      size="2x"
-      class="skip-right"
-      (click)="playRightSong()"
-    ></fa-icon>
+  <div class="player-actions">
+    <div class="repeat">
+      <fa-icon [icon]="faRedo" size="2x" (click)="onRepeat()"></fa-icon>
+    </div>
+
+    <div class="play-control">
+      <fa-icon
+        [icon]="faAngleLeft"
+        size="2x"
+        class="skip-back"
+        (click)="playLeftSong()"
+      ></fa-icon>
+      <fa-icon
+        [icon]="playerService.isPlaying ? faPause : faPlay"
+        size="2x"
+        class="play"
+        (click)="playSongHandler()"
+      ></fa-icon>
+      <fa-icon
+        [icon]="faAngleRight"
+        size="2x"
+        class="skip-right"
+        (click)="playRightSong()"
+      ></fa-icon>
+    </div>
+
+    <div class="toggle">
+      <div class="volume">
+        <fa-icon
+          [icon]="faVolumeDown"
+          size="2x"
+          (click)="onVolumeClick()"
+        ></fa-icon>
+        <input
+          type="range"
+          *ngIf="showVolumeControl"
+          (change)="onVolumeDrag($event)"
+          max="1"
+          min="0"
+          step="0.01"
+          [value]="volumeValue"
+        />
+      </div>
+
+      <fa-icon
+        [icon]="autoplay ? faToggleOn : faToggleOff"
+        size="2x"
+        (click)="onAutoplay()"
+      ></fa-icon>
+    </div>
+  </div>
+
+  <div class="captions">
+    <p [ngClass]="repeat ? 'highlight' : ''">repeat</p>
+    <p [ngClass]="autoplay ? 'highlight' : ''">autoplay</p>
   </div>
 
   <audio
