@@ -14,6 +14,7 @@ import {
   faToggleOff,
   faToggleOn,
   faRedo,
+  faVolumeDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Song, SongsService } from '../song/song.service';
@@ -33,13 +34,17 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   faToggleOn = faToggleOn;
   faToggleOff = faToggleOff;
   faRedo = faRedo;
+  faVolumeDown = faVolumeDown;
   //Song Info
   currentSong!: Song;
   currentTime: Number = 0;
   duration: Number = 0;
   animationPercentage: Number = 0;
+  //player
   autoplay: boolean = true;
   repeat: boolean = false;
+  showVolumeControl: boolean = false;
+  volumeValue: Number = 1;
   //Audio element
   @ViewChild('audioRef') audioElement!: ElementRef;
   //Subscription
@@ -154,5 +159,14 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onRepeat() {
     this.repeat = !this.repeat;
+  }
+
+  onVolumeClick() {
+    this.showVolumeControl = !this.showVolumeControl;
+  }
+
+  onVolumeDrag(e: any) {
+    this.volumeValue = e.target.value;
+    this.playerService.setVolume(this.volumeValue);
   }
 }
