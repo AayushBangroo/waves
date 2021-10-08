@@ -33,4 +33,8 @@ export class PlayerService {
     this.audioElement.nativeElement.pause();
     this.isPlaying = false;
   }
+
+  setVolume(volume: Number) {
+    this.audioElement.nativeElement.volume = volume;
+  }
 }

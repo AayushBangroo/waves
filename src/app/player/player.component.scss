@@ -44,11 +44,31 @@ fa-icon {
     justify-content: space-between;
     align-items: center;
   }
+
+  .toggle {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+
+    .volume {
+      position: relative;
+      input {
+        position: absolute;
+        width: 3px;
+        height: 80px;
+        top: 30px;
+        left: 5px;
+        cursor: pointer;
+        writing-mode: bt-lr; /* IE */
+        -webkit-appearance: slider-vertical; /* WebKit */
+      }
+    }
+  }
 }
 
 .captions {
   margin-top: -10px;
-  width: 47.5%;
+  width: 48%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -88,6 +108,10 @@ fa-icon {
 }
 
 @media screen and (max-width: 768px) {
+  fa-icon {
+    font-size: 0.8em;
+  }
+
   .time-control {
     width: 90%;
   }
@@ -95,12 +119,22 @@ fa-icon {
   .player-actions {
     width: 80%;
     .play-control {
-      width: 60%;
+      width: 50%;
+    }
+
+    .toggle {
+      width: 25%;
+      .volume {
+        input {
+          width: 2px;
+          height: 50px;
+        }
+      }
     }
   }
 
   .captions {
-    width: 80%;
+    width: 85%;
     margin-top: 0;
 
     p {
