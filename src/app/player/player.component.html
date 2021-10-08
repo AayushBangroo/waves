@@ -30,7 +30,7 @@
 
   <div class="player-actions">
     <div class="repeat">
-      <fa-icon [icon]="faRedo" size="2x"></fa-icon>
+      <fa-icon [icon]="faRedo" size="2x" (click)="onRepeat()"></fa-icon>
     </div>
 
     <div class="play-control">
@@ -64,8 +64,8 @@
   </div>
 
   <div class="captions">
-    <p>repeat</p>
-    <p>autoplay</p>
+    <p [ngClass]="repeat ? 'highlight' : ''">repeat</p>
+    <p [ngClass]="autoplay ? 'highlight' : ''">autoplay</p>
   </div>
 
   <audio

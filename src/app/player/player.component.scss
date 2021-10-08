@@ -1,3 +1,7 @@
+fa-icon {
+  cursor: pointer;
+}
+
 .player {
   min-height: 20vh;
   display: flex;
@@ -39,14 +43,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    fa-icon {
-      cursor: pointer;
-    }
-  }
-
-  .toggle {
-    cursor: pointer;
   }
 }
 
@@ -58,7 +54,9 @@
   justify-content: space-between;
 
   p {
+    transition: all 0.5s ease;
     font-size: 13px;
+    padding: 3px 5px;
   }
 }
 
@@ -81,6 +79,12 @@
   left: 0;
   transform: translateX(0%);
   pointer-events: none;
+}
+
+.highlight {
+  border-radius: 10px;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
