@@ -35,7 +35,7 @@ export class SongsService {
         'https://images.genius.com/3a1294ae444639117f94449181fe28da.1000x1000x1.jpg',
       background: ['#e8e8e6', '#b8d8d5'],
       audio:
-        'https://www.mboxdrive.com/Rogue%20-%20Fortress%20[Monstercat%20Release].mp3',
+        'https://www.mboxdrive.com/Rogue%20-%20Fortress%20[Monstercat%20Release]-2.mp3',
       id: uuidv4(),
       active: false,
     },
